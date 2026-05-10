@@ -6,7 +6,9 @@ def main():
 
     # 1. Инициализация модели и токенизатора
     model_name = "distilgpt2"
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    
+    # ВНИМАНИЕ: Принудительно используем CPU, так как PyTorch не поддерживает RTX 5060 Ti (sm_120)
+    device = torch.device("cpu")
     print(f"Загрузка модели: {model_name}... (Устройство: {device})")
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
