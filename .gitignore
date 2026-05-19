@@ -1,14 +1,1 @@
-models/
-data/knowledge.json
-__pycache__/
-*.pyc
-temp_*.png
-lab_*.png
-.venv/
-venv/
-*.egg-info/
-.pytest_cache/
-.coverage
-*.log
-.DS_Store
-Thumbs.db
+Nothing should be ignored since only a Python source file (`push_to_hub.py`) was added, which is a source code file that should be tracked in version control.
