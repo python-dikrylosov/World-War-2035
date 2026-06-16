@@ -59,8 +59,8 @@
 
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/YOUR_USERNAME/qwen-multimodal-assistant.git
-cd qwen-multimodal-assistant
+git clone https://github.com/python-dikrylosov/World-War-2035.git
+cd World-War-2035
 
 # Установить зависимости
 pip install -r requirements.txt
