@@ -361,4 +361,24 @@ if __name__ == "__main__":
     else:
         print("\nВеб-интерфейс недоступен без Flask.")
         print("Запуск CLI мониторинга...")
-        # Здесь можно добавить CLI режим
+
+        async def cli_monitor():
+            """CLI-режим: периодический снимок состояния сети в консоли."""
+            await neural_swarm.initialize()
+            try:
+                while True:
+                    snapshot = await global_map_context.get_snapshot()
+                    nodes = snapshot.get("nodes", []) if isinstance(snapshot, dict) else []
+                    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] Узлов: {len(nodes)}")
+                    for n in nodes[:20]:
+                        if isinstance(n, dict):
+                            print(f"  - {n.get('id', '?')}: status={n.get('status', '?')}, "
+                                  f"load={n.get('load', '?')}, security={n.get('security_level', '?')}")
+                    await asyncio.sleep(5)
+            except KeyboardInterrupt:
+                print("\n👋 CLI мониторинг остановлен.")
+
+        try:
+            asyncio.run(cli_monitor())
+        except KeyboardInterrupt:
+            pass
