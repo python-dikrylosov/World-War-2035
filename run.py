@@ -13,6 +13,8 @@ def parse_args():
     parser.add_argument("--test", action="store_true", help="Run tests")
     parser.add_argument("--config", action="store_true", help="Show configuration")
     parser.add_argument("--models-path", type=str, default="models", help="Path to models")
+    parser.add_argument("--gui", type=str, choices=["tkinter", "kivy"], default="tkinter",
+                        help="GUI toolkit (kivy — мультиплатформенный: desktop/Android/iOS)")
     return parser.parse_args()
 
 
@@ -61,9 +63,13 @@ def main():
         return
     
     # Default: GUI mode
-    from src.presentation.app import MainWindow
-    app = MainWindow()
-    app.run()
+    if args.gui == "kivy":
+        from src.presentation.app_kivy import QwenKivyApp
+        QwenKivyApp().run()
+    else:
+        from src.presentation.app import MainWindow
+        app = MainWindow()
+        app.run()
 
 
 if __name__ == "__main__":

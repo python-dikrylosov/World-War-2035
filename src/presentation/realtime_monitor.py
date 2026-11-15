@@ -9,8 +9,8 @@ import threading
 from datetime import datetime
 from typing import Optional
 
-from .async_event_bus import EventBus, EventType, Event, get_event_bus
-from .shared_context import SharedContextManager, get_context_manager
+from src.infrastructure.async_event_bus import EventBus, EventType, Event, get_event_bus
+from src.infrastructure.shared_context import SharedContextManager, get_context_manager
 
 
 class RealtimeMonitorPanel(tk.Frame):
